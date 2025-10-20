@@ -94,22 +94,22 @@ def get_ml_client():
     return EthereumMLClient()
 
 def main():
-    # 页面配置 - 保持论文原型的简洁风格
+    # 页面配置 
     st.set_page_config(
-        page_title="CryptoGuard - AI Cryptojacking Detection",
+        page_title="VanHelsing - AI Cryptojacking Detection",
         page_icon="🛡️",
         layout="wide",
         initial_sidebar_state="expanded"
     )
     
-    # 标题和介绍 - 论文风格
-    st.title("🛡️ CryptoGuard")
+    # 标题和介绍 
+    st.title("🛡️ VanHelsing")
     st.markdown("""
     ### AI-Powered Cryptojacking Detection Dashboard
     *Monitor your wallet activity, identify suspicious behavior, and take action directly within the interface.*
     """)
     
-    # 侧边栏导航 - 论文中的四个主要界面
+    # 侧边栏导航 
     st.sidebar.title("🔍 Navigation")
     app_mode = st.sidebar.selectbox(
         "Choose Analysis Mode",
@@ -141,14 +141,14 @@ def main():
         show_security_reports()
 
 def show_dashboard(ml_client):
-    """显示主仪表板 - 论文中的首页"""
+    """显示主仪表板"""
     st.header("🔍 Address Risk Scanner")
     
     # 创建两列布局
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        # 地址输入区域 - 论文中的核心交互
+        # 地址输入区域 
         st.subheader("Enter Ethereum Address")
         address_input = st.text_input(
             "Wallet Address",
@@ -190,21 +190,21 @@ def show_dashboard(ml_client):
             with st.spinner('🔄 AI Detective is analyzing address patterns...'):
                 prediction_result = ml_client.predict_address_risk(address)
             
-            # 显示AI分析结果 - 集成到论文原型中
+            # 显示AI分析结果
             display_ai_analysis_results(prediction_result, address)
             
-            # 论文原型中的安全警报部分
+            # 安全警报部分
             display_security_alerts(prediction_result)
             
         else:
             st.warning("⚠️ Please enter an address to analyze")
 
 def display_ai_analysis_results(prediction, address):
-    """显示AI分析结果 - 集成到论文原型布局中"""
+    """显示AI分析结果"""
     
     st.header("📊 AI Risk Analysis Results")
     
-    # 风险概览卡片 - 论文风格的设计
+    # 风险概览卡片 
     col1, col2, col3, col4 = st.columns(4)
     
     risk_score = prediction['risk_score']
@@ -253,7 +253,7 @@ def display_ai_analysis_results(prediction, address):
         st.success("✅ No significant risk patterns detected")
 
 def display_security_alerts(prediction):
-    """显示安全警报 - 论文原型中的警报系统"""
+    """显示安全警报"""
     
     st.header("⚠️ Security Alerts by AI Detective")
     
@@ -270,7 +270,7 @@ def display_security_alerts(prediction):
         - Immediate action recommended
         """)
         
-        # 论文原型中的一键操作
+        # 一键操作
         st.subheader("🚨 Immediate Actions")
         action_col1, action_col2, action_col3 = st.columns(3)
         
@@ -305,7 +305,7 @@ def display_security_alerts(prediction):
         """)
 
 def show_report_interface():
-    """显示报告界面 - 论文原型中的报告功能"""
+    """显示报告界面"""
     st.header("📋 Report Suspicious Activity")
     
     st.warning("This interface allows you to report suspicious activities to our security team.")
@@ -316,7 +316,7 @@ def show_report_interface():
         ["Login Issue", "Transaction Problem", "Address Poisoning", "Other Suspicious Activity"]
     )
     
-    # 行动选择 - 论文中的多选项设计
+    # 行动选择
     st.subheader("What actions would you like us to take?")
     
     action_options = st.multiselect(
@@ -354,7 +354,7 @@ def show_report_interface():
             st.rerun()
 
 def show_login_activity():
-    """显示登录活动界面 - 论文原型第二页"""
+    """显示登录活动界面"""
     st.header("🔐 Login Activity Monitor")
     
     # 模拟登录数据
@@ -383,12 +383,12 @@ def show_login_activity():
         st.metric("New Devices", "1", "+1")
         st.metric("Geographic Anomalies", "0", "0%")
     
-    # 报告按钮 - 论文原型设计
+    # 报告按钮
     if st.button("Report Suspicious Login", key="login_report"):
         show_report_interface()
 
 def show_transaction_monitor():
-    """显示交易监控界面 - 论文原型第三页"""
+    """显示交易监控界面"""
     st.header("💸 Transaction Activity Monitor")
     
     # 模拟交易数据
@@ -427,7 +427,7 @@ def show_transaction_monitor():
         show_report_interface()
 
 def show_security_reports():
-    """显示安全报告界面 - 论文原型扩展"""
+    """显示安全报告界面"""
     st.header("📊 Security Analysis Reports")
     
     # 周度安全摘要
@@ -456,7 +456,7 @@ def show_security_reports():
     
     st.line_chart(trend_data.set_index('Week'))
     
-    # 特征重要性（来自你的LightGBM模型）
+    # 特征重要性（来自LightGBM模型）
     st.subheader("🔍 Top Risk Indicators (AI Learned)")
     
     risk_indicators = pd.DataFrame({
