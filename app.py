@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 import hashlib
+from risk_engine import CryptoGuardRiskEngine
 
 class EthereumMLClient:
     """以太坊ML API客户端"""
